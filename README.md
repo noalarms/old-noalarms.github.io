@@ -8,6 +8,8 @@
 
 	If I have demographic data set of NYC and if I had info on all boroughs, I could analyze what types of people live in each borough.
 
+	If I have demographic data set of NYC and I had info on income/crime rate/housing, I could map out what types of poeple living in what types of neighborhoods have certain levels of income or crime rates or housing information such as violations or maybe rental prices.
+
 2. Supplemental Sources
 
   - NYC Open Data: Income, Housing Violations, Housing Affordability, Crime Rates
