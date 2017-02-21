@@ -19,3 +19,6 @@
   - What types of uses for this data have you, at the lab, employed for analysis? (What is the most interesting type of analysis you’ve come across with these data sets?)
   - How granular could I cross-reference the data?  For example, if I wanted income broken down specifially by demographics within specific neighborhoods/boroughs and each demographics' associated crime rate per neighborhood/borough?
   - Is there any chance of misleading information when it comes to cross-referencing data?  In other words, how do you know when you have enough data to really make a statement about something?
+
+## Project 1
+http://noalarms.github.io/project1
