@@ -661,6 +661,11 @@ function setup() {
 	line(331,302,348,318);
 	line(341,302,348,308);
 
+	//cover the last square
+	fill('#333');
+	noStroke();
+	rect(400,400,50,50);
+
 }
 
 
