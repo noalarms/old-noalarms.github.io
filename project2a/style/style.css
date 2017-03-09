@@ -1,0 +1,190 @@
+body {
+  text-align: center;
+  margin: 0;
+  height: 100vh;
+  background-color: #000;
+}
+
+#container {margin: auto;width: 50%;height:100%;}
+.leftCol {display:block;float:left;width:80%;xbackground:#eee;height:100%;}
+.rightCol {display:block;float:right;width:20%;xbackground:#eee;height:100%;text-align:right;display:table;}
+.rightContent {display:table-cell;vertical-align: middle;}
+.button {border-radius:50%;background:#333;height:32px;width:32px;color:#999;text-align: center;line-height: 30px;font-size:16px;display:table-cell;vertical-align: middle;}
+.button:hover {cursor: pointer;background: #666;color:#eee}
+.nextButton {float:right;}
+.fa {font-weight:bold !important;}
+
+div#words2,
+div#fakeWords2 {
+  font-family: 'Playfair Display', serif;
+  //font-family: 'Source Serif Pro', serif;
+  //margin: auto;
+  //width: 50%;
+  //border: 3px solid green;
+  padding: 10px;
+  font-size: 45px;
+  color:#D69963;
+  letter-spacing: 1px;
+  //line-height: 60px;
+  text-align: left;
+  //word-wrap: break-word;
+  padding-top:100px;
+  width:100%;
+  float:left;
+  xbackground:#333;
+}
+/*div#fakeWords2 {position:absolute;left:-9999px;top:0px;color:#FFD1A7;}
+*/
+.aWord {margin-right:0px;}
+.aWord:hover {color:#FFD1A7;cursor:pointer;}
+
+.val {display:inline;white-space: nowrap;}
+
+.carousel {width:50%;}
+
+#totalVals {
+  float:left;
+  display:block;
+  width:100%;
+  //margin: auto;
+  //width: 50%;
+  ////border-top: 1px solid #D69963;
+  padding: 10px;
+  font-size: 45px;
+  color:#D69963;
+  letter-spacing: 1px;
+  text-align: left;
+  //margin-top:70px;
+  //padding-top:20px;
+}
+#totalVals:hover + #words2 {color:#FFD1A7;}
+
+.totalBox {width:18%;display:inline-block;text-align: center;}
+
+/*#summaryVals:hover ~ #fakeWords2 {
+    font-family: 'Playfair Display', serif;
+  //font-family: 'Source Serif Pro', serif;
+  margin: auto;
+  width: 50%;
+  //border: 3px solid green;
+  padding: 10px;
+  font-size: 45px;
+  color:#D69963;
+  letter-spacing: 1px;
+  //line-height: 60px;
+  text-align: left;
+  //word-wrap: break-word;
+  padding-top:100px;
+}*/
+
+
+/*div#words2 {
+  display: inline-block;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  //font-family: 'Source Serif Pro', serif;
+
+  line-height: 60px;
+  font-size: 45px;
+  color:#D69963;
+  letter-spacing: 2px;
+}*/
+
+
+body p .word {
+  position: relative;
+  cursor: pointer;
+}
+body p .word:after, body p .word:before {
+  position: absolute;
+  width: 0;
+  background-color: #fff;
+  content: '';
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  transition: width .3s;
+}
+body p .word:before {
+  width: 100%;
+  opacity: 0;
+  background-color: #dc9e67;
+  transition: opacity 0s 0s;
+}
+body p .word.hover:after {
+  width: 100%;
+}
+body p .word.out:after {
+  left: auto;
+  right: 0;
+  width: 0;
+}
+body p .word.current:before {
+  opacity: .3;
+  transition: opacity 0s .2s;
+}
+
+
+
+
+
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+  text-decoration: none;
+  color: rgb(228, 68, 68);
+  text-align: center;
+  padding: 15px 0;
+}
+
+.popover__wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+    display: inline-block;
+}
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    //left: -150px;
+    transform: translate(0,10px);
+    background-color: #BFBFBF;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #BFBFBF transparent;
+    transition-duration: 0.5s;
+    transition-property: transform;
+}
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0,0px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+  text-align: center;
+}
+
