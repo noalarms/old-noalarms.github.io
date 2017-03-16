@@ -15,7 +15,27 @@ var flag = false;
 var m = 0;
 
 $(function(){
-    $('.editable').inlineEdit({control: 'textarea'});
+    $('.editable').inlineEdit({
+        control: 'textarea',
+        save: function( event, data ) {
+          $('#totalVals').css('opacity','0.5');
+          $('.em').css('font-size','16px');
+          $('.angerVal').html("--%"); 
+          $('.fearVal').html("--%");  
+          $('.joyVal').html("--%"); 
+          $('.sadVal').html("--%"); 
+          $('.surpVal').html("--%");
+        }, 
+        /*cancel: function( event, data ) {
+          $('#totalVals').css('opacity','1');
+          $('.em').css('font-size','16px');
+          $('.angerVal').html("--%"); 
+          $('.fearVal').html("--%");  
+          $('.joyVal').html("--%"); 
+          $('.sadVal').html("--%"); 
+          $('.surpVal').html("--%");
+        }, */
+      });
 });
 
 $( document ).ready(function() {
@@ -35,6 +55,7 @@ console.log("words2 is " + $("#words2").text());
   ////var str = "i really hate the subway so much. it's always late";
   $( "#playButton" ).click(function() {
   if (flag==true) {
+    $('#totalVals').css('opacity','1');
     $('#playButton').attr('disabled',true);
     $('#playButton').css('cursor','default');
     $('.fa-play-circle').css('cursor','default');
@@ -69,7 +90,6 @@ console.log("words2 is " + $("#words2").text());
 
 
       $('.em').css('font-size','16px');
-
       $('.angerVal').html("--%"); 
       $('.fearVal').html("--%");  
       $('.joyVal').html("--%"); 
