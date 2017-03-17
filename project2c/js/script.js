@@ -18,7 +18,7 @@ $(function(){
     $('.editable').inlineEdit({
         control: 'textarea',
         save: function( event, data ) {
-          $('#totalVals').css('opacity','0.5');
+          //$('#totalVals').css('opacity','0.5');
           $('.em').css('font-size','16px');
           $('.angerVal').html("--%"); 
           $('.fearVal').html("--%");  
@@ -55,7 +55,7 @@ console.log("words2 is " + $("#words2").text());
   ////var str = "i really hate the subway so much. it's always late";
   $( "#playButton" ).click(function() {
   if (flag==true) {
-    $('#totalVals').css('opacity','1');
+    //$('#totalVals').css('opacity','1');
     $('#playButton').attr('disabled',true);
     $('#playButton').css('cursor','default');
     $('.fa-play-circle').css('cursor','default');
