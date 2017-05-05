@@ -1,0 +1,160 @@
+body {
+  background: #111;
+}
+
+.container {width:1336px;margin:0 auto;height:700px;float:left;}
+.leftCol {float:left;width:50%;height:700px;}
+.rightColContainer {margin-left:100px;}
+.rightCol {float:right;width:50%;height:700px;}
+.rightCol .info {float:left;width:100%;}
+.dateContainer {width:100%;text-align: center;}
+.datepickerContainer {margin:100px 0;}
+
+.radial {display:block;float:left;}
+
+#centerDate {z-index: 9;color:#FFF;background:#333;}
+
+svg{
+	stroke: #000;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	z-index: 0 !important;
+}
+
+#rim {
+  fill: none;
+  stroke: #999;
+  stroke-width: 3px;
+}
+
+.second-hand{
+	stroke-width:3;
+
+}
+
+.minute-hand{
+	stroke-width:8;
+	stroke-linecap:round;
+}
+
+.hour-hand{
+	stroke-width:12;
+	stroke-linecap:round;
+}
+
+.hands-cover{
+	stroke-width:3;
+	fill:#fff;
+}
+
+.second-tick{
+	stroke-width:1;
+	fill:#000;	
+}
+
+.hour-tick{
+	stroke-width:2; //same as the miute hand
+}
+
+.second-label{
+	font-size: 12px;
+}
+
+.hour-label{
+	font-size: 18px;
+}
+
+.decLabel {background:#FFF;}
+
+.dataLine {
+	stroke-width:3;
+}
+
+#datepicker,
+.ui-datepicker {
+	background:#111 !important;
+	border:none !important;
+}
+.ui-datepicker-calendar thead th {
+	color:#555;
+	font-weight:normal;
+}
+.ui-datepicker-calendar td a {
+	background:none !important;
+	border:none !important;
+	color:#BCBCBC !important;
+	border-radius:50%;
+	text-align:center !important;
+	padding:10px !important;
+}
+.ui-datepicker-calendar td a:hover {
+	color:#FFF !important;
+	background:#222 !important;
+}
+.ui-datepicker-calendar td span {
+	background:none !important;
+	border:none !important;
+	color:#444;
+	text-align:center !important;
+	padding:10px !important;
+}
+.ui-datepicker-calendar a.ui-state-active,
+.ui-datepicker-calendar a.ui-state-active:hover {
+	background:#333 !important;
+	color:#FFF !important;
+}
+.ui-widget-header {
+	border:none !important;
+}
+.ui-datepicker-header {
+	background:none !important;
+	border-bottom:1px solid #444 !important;
+	border-radius:0 !important;
+}
+.ui-datepicker-month,
+.ui-datepicker-year {
+	background: none !important;
+	border: none !important;
+	color:#BCBCBC;
+	width:70px !important;
+}
+.ui-datepicker-prev,
+.ui-datepicker-next {
+
+}
+
+.tippy-tooltip[data-template-id="#dataPopover"] p {
+	color:red;
+}
+
+.tooltip {z-index:999 !important;color:#FFF;}
+
+
+
+.n {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.n:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}

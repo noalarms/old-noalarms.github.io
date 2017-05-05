@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="style.css"/>
+  <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="tippy.css">
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
+  <script src="tippy.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"></script>
+  <script src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+  <script src="index.js"></script>
+  <style>
+      .xbtn{
+         width: 25px;
+           height: 25px;
+           line-height: 25px;
+           text-align: center;
+           border-radius: 3px;
+           box-shadow: 0 0 1px;
+           float: left;
+           margin-right: 5px;
+           cursor: pointer;
+      }
+      .btn:hover{
+         background-color: #ccc;
+      }
+      body{
+          font-family: sans-serif;
+          xmargin-left:50px;
+        }
+        svg {
+          //border:1px solid #ccc;
+        }
+        #more * {color:white;}
+  </style>
+</head>
+
+<body>      
+
+
+<!-- <button class="myClass" title="Tooltip text">Button text</button>
+    <button id="myId" title="Tooltip text">Button text</button>
+
+    <script src="tippy.min.js"></script> -->
+ <button class="myClass" title="Tooltip text">Button text</button>
+<ul id="more">
+    <li> <a title="Loerm ipsum">Link</a> </li>
+    <li> <a title="Loerm ipsum">Link</a> </li>
+</ul>
+
+<button id="addmore">Add more!</button>
+
+  <div class="container">
+    <div class="leftCol">
+        <script type="text/javascript" src="main.js"></script>
+    </div>
+    <div class="rightCol">
+    <div class="rightColContainer">
+      <div class="dateContainer">
+        <div class="datepickerContainer">
+          <div id="datepicker"></div>
+        </div>
+      </div>
+      <div class="info">
+          asdf
+        </div>
+    </div>
+  </div>
+  </div>
+
+
+<div id="dataPopover" style="display: none;">
+  <p>Fun <strong>non-interactive HTML</strong> here</p>
+</div>
+<script type="text/javascript">
+  
+new Tippy('.dataLine', {
+  html: '#dataPopover', // or document.querySelector('#my-template-id')
+  arrow: true,
+  animation: 'fade'
+});
+
+</script>
+
+</body>
+</html>
