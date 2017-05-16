@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="style.css"/>
+  <script type="text/javascript" src="d3.v4.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="tippy.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
+  <script src="tippy.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css"></script>
+  <script src="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+  <script src="index.js"></script>
+  <script src="https://use.fontawesome.com/36edca8f82.js"></script>
+  <style>
+      .xbtn{
+         width: 25px;
+           height: 25px;
+           line-height: 25px;
+           text-align: center;
+           border-radius: 3px;
+           box-shadow: 0 0 1px;
+           float: left;
+           margin-right: 5px;
+           cursor: pointer;
+      }
+      .btn:hover{
+         background-color: #ccc;
+      }
+      body{
+          font-family: sans-serif;
+          xmargin-left:50px;
+        }
+        svg {
+          //border:1px solid #ccc;
+        }
+        #more * {color:white;}
+  </style>
+</head>
+
+<body>      
+
+<h3>N<span>oise</span>YC</h3>
+
+<div class="introSection">
+<h4>Overview</h4>
+<p>The decibel (dB) is the universal unit of sound measurement
+and is measured with a meter that registers sound pressure
+and displays these readings on a sound level scale. Decibels
+are a logarithmic unit, which means that a noise measuring
+30 decibels is actually two times louder than a noise
+registering at 20 decibels.</p>
+</div>
+
+<div class="introSection">
+<h4>Measurement</h4>
+<p>Sound levels vary depending on one's distance
+from the noise source. Below are some frequently
+heard sounds and their approximate decibel levels
+at common distances from the noise source. When 
+designated as "dB(A)," as seen below, the
+measurement is weighted in the "A" scale
+to simulate human hearing.</p>
+</div>
+
+<div class="decibelChartContainer">
+
+</div>
+<div class="decibelChartContainerScale">
+  <div>30</div>
+  <div>55</div>
+  <div>80</div>
+  <div>105</div>
+  <div>130</div>
+</div>
+<div class="decibelChartContainerScaleLabel">
+  <div>db(A)</div>
+</div>
+<!-- <button class="myClass" title="Tooltip text">Button text</button>
+    <button id="myId" title="Tooltip text">Button text</button>
+
+    <script src="tippy.min.js"></script> -->
+<!--  <button class="myClass" title="Tooltip text">Button text</button>
+<ul id="more">
+    <li> <a title="Loerm ipsum">Link</a> </li>
+    <li> <a title="Loerm ipsum">Link</a> </li>
+</ul>
+
+<button id="addmore">Add more!</button>
+ -->
+
+ <h4 class="visTitle">24-hr clock of 311 noise complaints in Manhattan</h4>
+ 
+  <div class="container">
+    <div class="leftCol">
+<!--         <script type="text/javascript" src="main.js"></script>
+ -->        <!--  <div class="legend">
+            <div class="bar"></div>
+            <div class="barCircle"></div>
+            <div class="label">311 Complaint</div>
+          </div> -->
+    </div>
+    <div class="rightCol">
+    <div class="rightColContainer">
+
+      <!-- <div class="dateContainer">
+        <div class="datepickerContainer">
+          <div id="datepicker"></div>
+        </div>
+      </div> -->
+      <!-- <div class="info">
+        <button id="showWeekdays" href="#">Show only weekdays</button>
+        <button id="showWeekends" href="#">Show only weekends</button>
+      </div> -->
+
+      <div class="summary">
+  <div class="section talking">
+      <div class="num">0</div>
+      <div class="label">Loud Talking</div>
+  </div>
+  <div class="section tv">
+      <div class="num">0</div>
+      <div class="label">Loud Television</div>
+  </div>
+  <div class="section engine">
+      <div class="num">0</div>
+      <div class="label">Engine Idling</div>
+  </div>
+  <div class="section banging">
+      <div class="num">0</div>
+      <div class="label">Banging/Pounding</div>
+  </div>
+  <div class="section horn">
+      <div class="num">0</div>
+      <div class="label">Car/Truck Horn</div>
+  </div>
+  <div class="section carMusic">
+      <div class="num">0</div>
+      <div class="label">Car/Truck Music</div>
+  </div>
+  <div class="section party">
+      <div class="num">0</div>
+      <div class="label">Loud Music/Party</div>
+  </div>
+  
+</div>
+
+
+    </div>
+  </div>
+
+
+<!-- <div id="barCal">
+</div> -->
+
+<div class="titleToShow">Complaints in 2016</div>
+<span class="titleInfo"></span>
+<div class="viz"></div>
+<div class="buttonsContainer">&nbsp;
+  <div id="buttons-jan" class="buttons">
+    <button id="showWeekdays-1" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-1" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-feb" class="buttons">
+    <button id="showWeekdays-2" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-2" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-mar" class="buttons">
+    <button id="showWeekdays-3" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-3" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-apr" class="buttons">
+    <button id="showWeekdays-4" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-4" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-may" class="buttons">
+    <button id="showWeekdays-5" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-5" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-jun" class="buttons">
+    <button id="showWeekdays-6" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-6" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-jul" class="buttons">
+    <button id="showWeekdays-7" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-7" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-aug" class="buttons">
+    <button id="showWeekdays-8" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-8" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-sep" class="buttons">
+    <button id="showWeekdays-9" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-9" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-oct" class="buttons">
+    <button id="showWeekdays-10" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-10" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-nov" class="buttons">
+    <button id="showWeekdays-11" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-11" class="showButton" href="#">weekends</button>
+  </div>
+  <div id="buttons-dec" class="buttons">
+    <button id="showWeekdays-12" class="showButton" href="#">weekdays</button>
+    <button id="showWeekends-12" class="showButton" href="#">weekends</button>
+  </div>
+</div>
+<!-- <div class="yearToShow">2016</div>
+ -->
+ <!-- <div style="xwidth: 1200px;xheight: 100px" class='viz'></div> -->
+</div>
+
+<div id="dataPopover1" class="popover">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+    <li>asdf</li>
+    <li>asdfwqer</li>
+  <ul>
+</div>
+<div id="dataPopover2" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+<div id="dataPopover3" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+<div id="dataPopover4" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+<div id="dataPopover5" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+<div id="dataPopover6" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+<div id="dataPopover7" class="popover" style="display: none;">
+  <p class="noComplaints">No complaints</p>
+  <ul>
+  <ul>
+</div>
+
+<script type="text/javascript">
+  new Tippy('.talking .label', {
+    html: '#dataPopover1', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+    //inertia: true
+  });
+  new Tippy('.tv .label', {
+    html: '#dataPopover2', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+  new Tippy('.engine .label', {
+    html: '#dataPopover3', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+  new Tippy('.banging .label', {
+    html: '#dataPopover4', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+  new Tippy('.horn .label', {
+    html: '#dataPopover5', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+  new Tippy('.carMusic .label', {
+    html: '#dataPopover6', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+  new Tippy('.party .label', {
+    html: '#dataPopover7', // or document.querySelector('#my-template-id')
+    arrow: true,
+    animation: 'fade',
+    position: 'bottom',
+    interactive: true
+  });
+
+</script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

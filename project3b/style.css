@@ -1,0 +1,397 @@
+body {
+  background: #111;
+  color:#BCBCBC;
+  margin:auto;
+  width:1280px;
+}
+
+div {outline:none;}
+
+h3 span {font-weight:normal;color:#FC9272;}
+h3 {font-size:82px;color:#BCBCBC;}
+
+h4.visTitle {float:left;width: 100%;text-align: center;}
+
+h4 {font-size:21px;font-weight}
+
+a {color:#FFF;}
+
+p {line-height: 25px;font-size:18px;}
+
+.introSection {float:left;width:590px;padding-right: 50px;}
+.introSection h4 {margin-bottom: 0;}
+.introSection p {margin:9px 0 0 0;}
+
+.container {width:1336px;margin:20px 0;height:650px;float:left;}
+.leftCol {float:left;width:50%;height:650px;}
+.rightColContainer {margin-left:100px;}
+.rightCol {float:right;width:50%;height:650px;}
+.rightCol .info {float:left;width:100%;margin-top:-80px;}
+.dateContainer {width:100%;text-align: center;}
+.datepickerContainer {margin:100px 0;}
+
+#barCal {width:100%;height:200px;float:left;}
+
+.radial {display:block;float:left;}
+
+#centerDate {z-index: 9;color:#FFF;background:#333;}
+
+svg{
+	stroke: #000;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+	z-index: 0 !important;
+}
+
+#rim {
+  fill: none;
+  stroke: #999;
+  stroke-width: 3px;
+}
+
+.second-hand{
+	stroke-width:3;
+
+}
+
+.minute-hand{
+	stroke-width:8;
+	stroke-linecap:round;
+}
+
+.hour-hand{
+	stroke-width:12;
+	stroke-linecap:round;
+}
+
+.hands-cover{
+	stroke-width:3;
+	fill:#fff;
+}
+
+.second-tick{
+	stroke-width:1;
+	fill:#000;	
+}
+
+.hour-tick{
+	stroke-width:2; //same as the miute hand
+}
+
+.second-label{
+	font-size: 12px;
+}
+
+.hour-label{
+	font-size: 18px;
+}
+
+.decLabel {background:#FFF;}
+
+.dataLine {
+	stroke-width:3;
+}
+
+#datepicker,
+.ui-datepicker {
+	background:#111 !important;
+	border:none !important;
+}
+.ui-datepicker-calendar thead th {
+	color:#555;
+	font-weight:normal;
+}
+.ui-datepicker-calendar td a {
+	background:none !important;
+	border:none !important;
+	color:#BCBCBC !important;
+	border-radius:50%;
+	text-align:center !important;
+	padding:10px !important;
+}
+.ui-datepicker-calendar td a:hover {
+	color:#FFF !important;
+	background:#222 !important;
+}
+.ui-datepicker-calendar td span {
+	background:none !important;
+	border:none !important;
+	color:#444;
+	text-align:center !important;
+	padding:10px !important;
+}
+.ui-datepicker-calendar a.ui-state-active,
+.ui-datepicker-calendar a.ui-state-active:hover {
+	background:#333 !important;
+	color:#FFF !important;
+	border-radius:50%;
+
+}
+.dayHighlight {
+	border-radius:50%;
+	background:#333 !important;
+	color:#FFF !important;
+	border:none !important;
+}
+.ui-widget-header {
+	border:none !important;
+}
+.ui-datepicker-header {
+	background:none !important;
+	border-bottom:1px solid #444 !important;
+	border-radius:0 !important;
+}
+.ui-datepicker-month,
+.ui-datepicker-year {
+	background: #222 !important;
+	border: none !important;
+	color:#BCBCBC;
+	width:70px !important;
+	outline:none;
+}
+.ui-datepicker-month:hover,
+.ui-datepicker-year:hover {
+	background:#333 !important;
+	cursor: pointer;
+}
+.ui-datepicker-prev,
+.ui-datepicker-next {
+	background: #222 !important;
+	//background-size:14px 18px !important;
+}
+.ui-state-hover {
+	border:none !important;
+	top:0 !important;
+}
+.ui-state-hover:not(.ui-state-disabled) {
+	background: #333 !important;
+	top:0 !important;
+}
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon {
+	//background:none !important;
+	//border:none !important;
+}
+.ui-icon-circle-triangle-w,
+.ui-state-hover .ui-icon-circle-triangle-w {
+	background-image:url('icon-arrow-left.png') !important;
+	background-size:14px 18px;
+	background-position: 0 !important;
+}
+.ui-icon-circle-triangle-e,
+.ui-state-hover .ui-icon-circle-triangle-e {
+	background-image: url('icon-arrow-right.png') !important;
+	background-size:14px 18px;
+	background-position: 0 !important;
+}
+a.ui-state-hover,
+a.ui-datepicker-prev-hover,
+a.ui-datepicker-next-hover {
+	//left:0px !important;
+	top:0 !important;
+	margin:0 !important;
+	border:0 !important;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+	top:2px !important;
+	cursor:pointer;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+	left:2px !important;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+	right:2px !important;
+}
+
+.tippy-tooltip[data-template-id="#dataPopover"] p {
+	color:red;
+}
+
+.tooltip {z-index:999 !important;color:#FFF;}
+
+
+.popover {display:none;text-align:left;}
+.tippy-tooltip-content ul {list-style-type: none;padding:0;}
+.tippy-tooltip-content ul li {text-align: left;margin:10px 0;}
+
+.n {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.n:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+.decibelChartContainer {
+	border-bottom:1px dashed #E4E4E4;
+	float:left;
+	width:100%;
+	height:300px;
+	margin:50px 0 20px 0;
+}
+
+.decibelChartContainerScale,
+.decibelChartContainerScaleLabel {
+	width:100%;
+	float:left;
+}
+.decibelChartContainerScale div {
+	width:20%;
+	text-align:center;
+	float:left;
+	font-size:12px;
+	color:#BCBCBC;
+	margin:0 0 20px 0;
+}
+.decibelChartContainerScaleLabel {
+	width:100%;
+	text-align: center;
+	font-size:12px;
+	color:#BCBCBC;
+	margin:0 0 40px 0;
+}
+
+.legend {float:left;margin:50px 276px;}
+.legend .bar {
+	width:100px;
+	height:2px;
+	background:#FC9272;
+	//background:#FB8A67;
+	//background: #F78866;
+	opacity:0.8;
+}
+.legend .barCircle {
+	position:relative;
+	//left:570px;
+	left:93px;
+	margin-top: -7px;
+	width:12px;
+	height:12px;
+	background:#FC9272;
+	opacity:0.8;
+	border-radius:50%;
+}
+.legend .label {font-size:12px;margin:10px 11px;}
+.showButton {background:#222;border:none;xborder:1px solid #BCBCBC;color:#BCBCBC;border-radius:3px;padding:8px;font-size:14px;outline:none;margin:10px 0;}
+.showButton:active {outline:none;}
+.showButton:hover {color:#eee;border-color:#eee;cursor:pointer;background: #333;}
+
+
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  //width: 200px;
+  //height: 50px;
+  padding: 2px;
+  font: 14px sans-serif;
+  background: #333;
+  color:#BCBCBC;
+  border: 0px;
+  border-radius: 1px;
+  pointer-events: none;
+  padding:10px;
+  line-height: 18px;
+}
+//div.tooltip span.place {display:block;font-weight:bold;font-size:14px;margin:3px 0;}
+//div.tooltip p.desc {font-size:14px;margin:10px 0;}
+div.tooltip span.place {display:block;font-weight:normal;font-size:18px;margin:3px 0;}
+div.tooltip p.desc {font-size:14px;font-weight:bold;margin:10px 0;}
+
+.summary {width:100%;margin-top:60px;}
+.summary .section {width:100%;margin:30px 0;}
+/*.summary .talking {color:#e41a1c;}
+.summary .tv {color:#377eb8;}
+.summary .engine {color:#4daf4a;}
+.summary .banging {color:#984ea3;}
+.summary .horn {color:#ff7f00;}
+.summary .carMusic {color:#ffff33;}
+.summary .party {color:#a65628;}*/
+.summary .num {font-size:38px;font-weight: lighter;color:#BCBCBC;margin:0 0 5px 0;display: inline-block;text-align: right;width:100px;}
+.summary .label {font-size:14px;font-weight: bold;display:inline;}
+.summary .talking {color:#fee5d9;}
+.summary .tv {color:#fcbba1;}
+.summary .engine {color:#fc9272;}
+.summary .banging {color:#fb6a4a;}
+.summary .horn {color:#ef3b2c;}
+.summary .carMusic {color:#cb181d;}
+.summary .party {color:#99000d;}
+
+.titleToShow {float:left;margin:10px 0;font-size:18px;font-weight: bold;}
+.titleInfo {font-weight:normal;margin-left:10px;vertical-align: -13px;font-size:18px;}
+.yearToShow {color:#BCBCBC;font-weight:bold;float:right;margin:10px 0;}
+.viz {float:left;xmargin-bottom: 50px;}
+.dateBar,
+.dateFreqBar {cursor:pointer;}
+.dateBar:hover,
+.dateFreqBar:hover .dateBar {fill: #AAA !important;cursor: pointer !important;}
+
+.buttonColor {fill:#FFF;cursor:pointer;}
+.buttonWk {cursor:pointer;}
+
+.buttonsContainer {float:left;margin-bottom:50px;margin-top:-20px;}
+.buttons {float:left;padding-top:10px;}
+.buttons .showButton {
+	xmargin:0;
+}
+
+#buttons-jan {}
+#buttons-feb {margin-left:15px;}
+#buttons-mar {margin-left:10px;}
+#buttons-apr {margin-left:14px;}
+#buttons-may {margin-left:11px;}
+#buttons-jun {margin-left:15px;}
+#buttons-jul {margin-left:12px;}
+#buttons-aug {margin-left:15px;}
+#buttons-sep {margin-left:15px;}
+#buttons-oct {margin-left:12px;}
+#buttons-nov {margin-left:15px;}
+#buttons-dec {margin-left:13px;}
+
+#showWeekdays-1, 
+#showWeekends-1, 
+#showWeekdays-2, 
+#showWeekends-2, 
+#showWeekdays-3, 
+#showWeekends-3, 
+#showWeekdays-4, 
+#showWeekends-4, 
+#showWeekdays-5, 
+#showWeekends-5, 
+#showWeekdays-6, 
+#showWeekends-6, 
+#showWeekdays-7, 
+#showWeekends-7, 
+#showWeekdays-8, 
+#showWeekends-8,
+#showWeekdays-9, 
+#showWeekends-9, 
+#showWeekdays-10, 
+#showWeekends-10, 
+#showWeekdays-11, 
+#showWeekends-11, 
+#showWeekdays-12, 
+#showWeekends-12
+{visibility:hidden;display:inline;}
+
+.buttonsContainer button {display:block !important;width:90px;margin-bottom: 10px;}
