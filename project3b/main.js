@@ -1,8 +1,5 @@
 
 
-//var width = window.innerWidth*.8;
-//var height = window.innerHeight*.8;
-
 var width = 650;
 var height = 650;
 
@@ -44,7 +41,6 @@ var dec130 = 69;
 var banging, horn, carMusic, engine, party, talking, tv;
 banging = horn = carMusic = engine = party = talking = tv = 0;
 
-//var noiseColors = ['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628'];
 var noiseColors = ['#fee5d9','#fcbba1','#fc9272','#fb6a4a','#ef3b2c','#cb181d','#99000d']
 
 data = [[120,94],[790,150],[720,210],[1440,94],[840,265]]; // [time,decibel]
@@ -94,18 +90,11 @@ var minuteScale = secondScale = d3.scaleLinear()
 	.range([0,360])
 	.domain([0,120]);
 
-/*var barCalXScale = d3.scaleLinear()
-	.range([0,365])
-	.domain([0,barCalWidth]);*/
-
-
-//var parseTime = d3.timeParse("%d-%b-%y");
 
 var yearScale = d3.scaleTime()
 	.range([new Date(2016,0,1),new Date(2016,11,31)])
 	.domain([0,barCalWidth]);
 
-	//console.log("yearScale for 800: " + yearScale(4));
 
 
 var zips = [/*"Central Harlem":*/[10026, 10027, 10030, 10037, 10039],
@@ -120,9 +109,6 @@ var zips = [/*"Central Harlem":*/[10026, 10027, 10030, 10037, 10039],
 		  /*"Inwood and Washington Heights":*/[10031, 10032, 10033, 10034, 10040]
 		];	
 
-//console.log(zips);
-
-//console.log(zips[0]);
 
 var theDateVar;
 var dateCount = [];
@@ -134,7 +120,6 @@ var setup = function(callback) {
 						.attr("height",height)
 						.attr("class","radial");
 
-	//d3.csv("man_cb1_nypd_noise-edit2-truncated-sortedByTime.csv");
 
 	svgBarCal = d3.select("#barCal")
 						.append("svg")
@@ -142,31 +127,12 @@ var setup = function(callback) {
 						.attr("height",barCalHeight)
 						.style("background","#FFF");
 
-	/*vizSvg = d3.select(".viz")
-						.append("svg")
-						.attr("width",barCalWidth)
-						.attr("height",barCalHeight);*/
-						//.style("background","#FFF");
-
-	/*svgBarCal.append("circle")
-		.attr("cx",5)
-		.attr("cy",5)
-		.attr("r",85)
-		.style("fill","none")
-		.style("stroke", baseColor);*/
-
 	theDataVar = d3.csv("noise 2016.csv", function(data) {
   		theData = data;
-  		//console.log(theData[1]);
 	  		dateCount = d3.nest()
 		  .key(function(d) { return d["Created Date"]; })
 		  .rollup(function(v) { return v.length; })
 		  .entries(theData);
-		  
-	/*	  console.log("a " + dateCount.length);
-		 console.log("b " + JSON.stringify(dateCount));
-		 console.log("c " + JSON.stringify(dateCount).length);
-*/
 
 		var dateCountByMonth = [];
 		var mArr = [];
@@ -176,8 +142,6 @@ var setup = function(callback) {
 			var m = key.substr(0, key.indexOf('/'));
 			if(m == mIndex && mIndex < 13) {
 				mArr.push(dateCount[i]);
-				//console.log("m is " + m + ", mIndex is " + mIndex);
-				//console.log(JSON.stringify(mArr));
 				if (m == 12)
 					dateCountByMonth[mIndex-1] = mArr;
 			}
@@ -185,14 +149,9 @@ var setup = function(callback) {
 				dateCountByMonth[mIndex-1] = mArr;
 				mArr = [];
 				mArr.push(dateCount[i]);
-				//console.log("ma " + JSON.stringify(mArr) + ", mIndex: " + mIndex);
 				mIndex++;
 			}
 		}
-		//console.log(dateCountByMonth.length);
-		/*for(var i = 0; i<dateCountByMonth.length; i++) { 
-			console.log("datecountbymonth: " + JSON.stringify(dateCountByMonth[i]));
-		}*/
 
 		 drawBarCal(dateCountByMonth);
 
@@ -201,11 +160,6 @@ var setup = function(callback) {
 
 	callback();
 }
-
-/*function testing(arr) {
-	dateCount = arr;
-	console.log(dateCount.length);
-}*/
 
 var drawBase = function() {
 
@@ -237,22 +191,9 @@ var drawBase = function() {
 		.style("fill","none")
 		.style("stroke", baseColor);
 
-	/*svgContainer.append("circle")
-		.attr("cx",x1)
-		.attr("cy",y1)
-		.attr("r",275)
-		.style("fill","none")
-		.style("stroke", baseColor);*/
-
 		// draw base lines
 	for(var i = 0;i<24;i++) {
-		//if (i==0) {
-			//drawLabel(x1,88,0,"db(A)");
-		//}
-		//else {
-			drawLine(69,15*i, baseColor);
-			//drawLabel(x1,88,14.4*i,"test");
-		//}
+		drawLine(69,15*i, baseColor);
 	}
 
 
@@ -273,24 +214,6 @@ var drawBase = function() {
 			.attr('transform',function(d){
 				return 'rotate(' + secondScale(d) + ')';
 			});
-	//and labels
-
-	// draws second/minute number labels (works)
-	/*face.selectAll('.second-label')
-		.data(d3.range(5,121,5))
-			.enter()
-			.append('text')
-			.attr('class', 'second-label')
-			.attr('text-anchor','middle')
-			.attr('x',function(d){
-				return secondLabelRadius*Math.sin(secondScale(d)*radians);
-			})
-			.attr('y',function(d){
-				return -secondLabelRadius*Math.cos(secondScale(d)*radians) + secondLabelYOffset;
-			})
-			.text(function(d){
-				return d;
-			});*/
 
 	//... and hours major ticks
 	face.selectAll('.hour-tick')
@@ -332,27 +255,6 @@ var drawBase = function() {
 		.style("font-size","14px")
 		.style("stroke", baseColor)
 		.attr("id","centerCircle");
-		
-		/*svgContainer.append("text")
-		.attr("x",x1)
-		.attr("y",y1)
-		.text("hello")
-			.attr("font-family", "sans-serif")
-	        .attr("font-size", "18px")
-			.attr("fill","#BCBCBC")
-			.attr("stroke","none")
-			.attr("text-anchor","middle")
-			.attr("id","centerDate")
-		.append("tspan")
-			.text("there")
-			.attr("dx","-40px")
-			.attr("dy","20px")
-			.attr("font-family", "sans-serif")
-	        .attr("font-size", "18px")
-			.attr("fill","#BCBCBC")
-			.attr("stroke","none")
-			.attr("text-anchor","middle")
-			.attr("id","centerDate");*/
 
 	svgContainer.append("text")
 		.attr("x",x1)
@@ -457,18 +359,6 @@ var drawBase = function() {
 		.attr("text-anchor","middle")
 		.attr("class","decLabel");
 
-
-	/*svgContainer.append("text")
-		.attr("x",x1)
-		.attr("y",y1-290)
-		.append("tspan")
-		.text("db(A)")
-		.attr("font-family", "sans-serif")
-        .attr("font-size", "12px")
-		.attr("fill","#BCBCBC")
-		.attr("stroke","none")
-		.attr("text-anchor","middle")*/
-
 }
 
 var drawCenter = function(month, day,small) {
@@ -522,20 +412,6 @@ var drawCenter = function(month, day,small) {
 
 }
 
-/*var plotData = function(date,data) {
-	currDate = date;
-	var scale = d3.scaleLinear()
-		.domain([0,1440])
-		.range([0,345.6]);
-	for(var i = 0;i<data.length;i++) {
-		// drawLine(decibel, time, color)
-		drawLine(data[i][1],scale(data[i][0]),"black");
-		console.log(data[i][0]);
-		console.log(data[i][1]);
-		//console.log("scaled is " + scale(data[i][0]));
-	}
-}*/
-
 var plotSingleData = function(month,day,year,dayName) {
 	//remove existing data lines
 	$(".dataLine").remove();
@@ -558,29 +434,21 @@ var plotData = function(month,day,year,dayName,isSummedTogether) {
 	var scale = d3.scaleLinear()
 		.domain([0,1440])
 		.range([0,360]);
-	
-	//remove existing data lines
-	//$(".dataLine").remove();
 
 	currDay = day;
 	currDayName = dayName;
 
 	var theDate = month + "/" + day + "/" + year;
-	console.log("in plotData and theDate is " + theDate);
 
 	//plot data now
 	for(var i = 0; i < theData.length; i++) {
 		if (theDate == theData[i]["Created Date"]) {
-			//console.log("yes");
 			var hourMin = theData[i]["Created Time"].split(":");
-			console.log(hourMin);
 			var hour = +hourMin[0];
 			var min = +hourMin[1];
 			var totalMin = (hour*60)+min;
-			console.log(totalMin);
 
 			var decLevel = 0;
-			console.log(theData[i].Descriptor);
 
 			var color;
 
@@ -665,35 +533,6 @@ var plotData = function(month,day,year,dayName,isSummedTogether) {
 		}
 	}
 
-	/*d3.selectAll("line")
-		.data(theData)
-		.enter()
-		.append("line")
-		.style("stroke","black")
-		.attr("x1",x1)
-		.attr("y1",y1)
-		.attr("x2",x1)
-		.attr("y2",function(d) {
-			console.log("test1");
-			return dec130;
-
-		})
-		.style("transform",function(d) {
-			var rotate = scale(790);
-			console.log("test2" + rotate);
-			return "rotate("+rotate+"deg)"
-			})
-			.style("transform-origin","bottom")
-			.attr("class","dataline");*/
-
-	/*for(var i = 0;i<data.length;i++) {
-		// drawLine(decibel, time, color)
-		drawLine(data[i][1],scale(data[i][0]),"black",true);
-		console.log(data[i][0]);
-		console.log(data[i][1]);
-		//console.log("scaled is " + scale(data[i][0]));
-	}*/
-
 	// draw center date cirle on top of lines
 	drawCenter(currMonthName,currDay,false);
 
@@ -705,9 +544,6 @@ var plotData = function(month,day,year,dayName,isSummedTogether) {
 	$(".party .num").increment({coef: 1, speed:0, limit:party});
 	$(".talking .num").increment({coef: 1, speed:0, limit:talking});
 	$(".tv .num").increment({coef: 1, speed:0, limit:tv});
-
-	//reset summary totals
-	//banging = horn = carMusic = engine = party = talking = tv = 0;
 
 }
 
@@ -734,40 +570,7 @@ var drawLine = function(y2,rotate,color,isData) {
 
 var drawDataLine = function(y2,rotate,color,time,desc,place,day,dayName) {
 
-		//var tipContent = rotate;
-//console.log("place" + place);
-		/* Initialize tooltip */
-		////var tip = d3.tip().html(function(d) { 
-			/*var tipContent =  $('<div />', {
-            html: '<a title="Lorem ipsum: Added after page load!"><b>New</b><br> link!</a>'
-        });*/
-		////	return place + ", " + " " + currMonth + "/" + day + "/" + "20" + currYear + ", " + time + " - " + desc; 
-			//return tipContent.innerHTML;
-		////});
-
-		/* Invoke the tip in the context of your visualization */
-		////svgContainer.call(tip)
-
 		var dataGroup = svgContainer.append("g");
-			//.attr("width",200)
-			//.attr("height",200);
-
-/*		var theLine = dataGroup.append("svg:path")
-            .attr("d","M " + x1 + " " + y1 + " " + "L " + x1 + " " + y2)//" 0 60 L 50 110 L 90 70 L 140 100")
-            .style("stroke",color)
-            .style("transform","rotate("+rotate+"deg)")
-			.style("transform-origin","bottom")
-			.style("stroke-width","2")
-			.style("stroke-linecap","round")
-			.style("stroke-linejoin","round")
-			.attr("class","dataLine")
-			.attr("rel","tooltip")
-			.on('mouseover', tip.show)
-  			.on('mouseout', tip.hide)
-  			.transition()
-			.duration(800)
-			.attr("d", "M " + x1 + " " + y1 + " " + "L " + x1 + " " + y2)
-			.attr("title","testing title tooltip");*/
 
 		var theLine = dataGroup.append("line")
 			.style("stroke",color)
@@ -783,88 +586,23 @@ var drawDataLine = function(y2,rotate,color,time,desc,place,day,dayName) {
 			.style("opacity","0.8")
 			.attr("class","dataLine")
 			.attr("rel","tooltip")
-			//.on('mouseenter', tip.show)
-  			//.on('mouseout', tip.hide)
-  			/*.on("mouseover", function(d) {
-		       div.transition()
-		         .duration(200)
-		         .style("opacity", .9);
-		       div.html("<span class='place'>" + place + "</span>" + "</span><span class='time'><i class='fa fa-clock-o' aria-hidden='true'></i> " + time + "</span>, <span class='dayName'>" + dayName + "</span> "  + "<span class'currMonthTip'>" + currMonthName + "</span> " + "<span class='day'>" + day + "</span>, " + "<span class='year'>20" + currYear + "</span><p class='desc'>" + desc + "</p>")
-		         .style("left", (d3.event.pageX + 13) + "px")
-		         .style("top", (d3.event.pageY - 28) + "px");
-		       })
-		     .on("mouseout", function(d) {
-		       div.transition()
-		         .duration(300)
-		         .style("opacity", 0);
-		       })*/
 		  	.transition()
 			.duration(800)
 			.attr("x2", x1)
 			.attr("y2", y2)
 			.attr("title","testing title tooltip");
 
-			//var myPoint = theLine.getPointAtLength(theLine.getTotalLength());
-
-		/*svgContainer.selectAll(".dataLine")
-			.append("circle")
-			.attr("cx",x1)
-			.attr("cy",y2)
-			.attr("r",15)
-			//.style("transform","rotate("+rotate+"deg)")
-			.style("transform-origin","bottom")
-			.style("fill","yellow");*/
-
 var pathEl = theLine.node();
 
 var pathLength = pathEl.getTotalLength();
-console.log('path length: ', pathLength);
 
 var pathPoint = pathEl.getPointAtLength(pathLength);
-console.log('path point: ', pathPoint);
 
 var point = svgContainer.append("svg:circle")
         .style("fill", "red")
         .attr("r", 5)
         .attr("cx", pathPoint.x)
         .attr("cy", pathPoint.y);
-
-        console.log(pathPoint.x);
-        console.log(pathPoint.y);
-
-
-	/*	dataGroup.append("circle")
-			.style("stroke",color)
-			.attr("cx",hourScale(x1))
-			.attr("cy",hourScale(y2))
-			.attr("r",5)
-			.style("transform","rotate("+rotate+"deg)")
-			.style("transform-origin","bottom")
-			.attr("fill",color)
-			.attr("class","dataLine")
-			.attr("rel","tooltip")
-			.on('mouseover', tip.show)
-  			.on('mouseout', tip.hide)
-			.attr("title","testing title tooltip");*/
-
-
-	/*	svgContainer.append("line")
-			.style("stroke",color)
-			.attr("x1",x1)
-			.attr("y1",y1)
-			.attr("x2",x1)
-			.attr("y2",y2)
-			.style("transform","rotate("+rotate+"deg)")
-			.style("transform-origin","bottom")
-			.style("stroke-width","2")
-			.attr("class","dataLine")
-			.attr("rel","tooltip")
-			.on('mouseover', tip.show)
-  			.on('mouseout', tip.hide)
-			.attr("title","testing title tooltip");
-			//.transition()
-        	//.duration(2000);
-        	//.ease("linear");*/
 
         svgContainer.append("circle")
         	.style("transform","rotate("+rotate+"deg)")
@@ -918,9 +656,6 @@ var point = svgContainer.append("svg:circle")
 			  .enter().append("div")
 			    .style("width", function(d) { return x(d) + "px"; })
 			    .text(function(d) { return d; })
-			    //.on("mouseenter", function(d){tooltip.text(d); return tooltip.style("visibility", "visible");})
-			      //.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
-			      //.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 	 
 }
 
@@ -929,7 +664,6 @@ var drawScale = function() {
 						.append("svg")
 						.attr("width","100%")
 						.attr("height","100%");
-						//.style("border","1px solid #FFF");
 
 	svgChart.append("line")
 		.style("stroke","#444")
@@ -1134,47 +868,12 @@ var drawScale = function() {
 
 
 var drawBarCal = function(frequencyArray) {
-	/*var barCalYScale = d3.scaleLinear()
-	.domain([0,				
-		d3.max(theData, function(d) {
-			return d3.max(d, function(d) {
-				//return d.y0 + d.y;
-				return d[""];
-			});
-		})
-	])
-	//.domain([0,theData])
-	.range([0,200]);*/
-
-	//svgBarCal.selectAll()
-
-
 	
 // Get all days in year by month
 for(var i = 0; i<12; i++) {
 	daysInYear.push(getDaysInMonth(i,2016));
 }
 
-
-	/*var allDates2 = [];
-	for(var i = 0; i < daysInYear.length; i++) {
-		for(var j = 0; j < daysInYear[i].length; j++) {
-			var dateArray = daysInYear[i][j].toString().split(" ");
-			var m = getMonthFromString(dateArray[1]);
-			var d = parseInt(dateArray[2]);
-			var y = dateArray[3].toString().substring(2,4);
-			var reformattedDate = m + "/" + d + "/" + y;
-			console.log(allDates2[0][0]);
-		    allDates2[i][j] = reformattedDate;
-		    	
-
-		}
-	}
-	console.log(allDates2);*/
-
-
-	/*console.log("days: " + daysInYear[1]);
-	console.log("days length: " + daysInYear.length);*/
 		vizSvg = d3.select(".viz").append("svg").style("width","1260").style("height","160");
 		vizSvg.on('mouseout', function(d) {
   				 	$(".titleToShow").text("Complaints in 2016");
@@ -1184,10 +883,8 @@ for(var i = 0; i<12; i++) {
 		var xTotal = 0;
 	for(var i = 0; i<12; i++) {
 		monthGroup = vizSvg.append("g");
-		//var data = [5,2,3,4,5,10,12,2,20,34,45];
 		var daysInYearData = daysInYear[i];
 		var frequencyData = frequencyArray[i];
-		//console.log("days in hyear data : " + daysInYearData);
 
 		// Display Month names
 		monthGroup.append("text")
@@ -1197,7 +894,6 @@ for(var i = 0; i<12; i++) {
 	        .attr("font-size", "14px")
 	        .attr("font-weight","bold")
 			.attr("fill","#FFF")
-			//.attr("stroke","none")
 			.text(mNames[i]);
 
 		var animationDuration = 0;
@@ -1221,13 +917,9 @@ for(var i = 0; i<12; i++) {
 	         	var fullDate = d.toString().split(" ",4);
 	         	var dateString = fullDate[0] + ", " + fullDate[1] + " " + parseInt(fullDate[2]) + " " + fullDate[3];
 	         	$(".titleToShow").text(dateString);
-
-	         	/*var numComplaints = d.value;
-	         	$(".titleInfo").text(numComplaints + " complaints");*/
 	         })
 	         .on('click',function(d){
 	         	var tempDate = new Date(d); // eg. Tue Apr 19 2016 00:00:00 GMT-0400 (EDT)
-	         	 console.log("tempdate is " + tempDate);
 				    var dateString = tempDate.toString();
 				    var dateString1 = dateString.split(" ");
 				    currDayName = dateString1[0];
@@ -1243,9 +935,6 @@ for(var i = 0; i<12; i++) {
 				   	$('.num').html(0);
 				   	plotSingleData(currMonth,currDay,currYear,currDayName);
 	         })
-				 /*.on('mouseout', function(d) {
-				 	$(".dateToShow").text("Cmplaints in 2016");
-				 })*/
 	         .transition()
 	         .duration(animationDuration)
 	         .delay(function(d,i){
@@ -1259,7 +948,6 @@ for(var i = 0; i<12; i++) {
 	         .on('mouseover',function(d) {
 	         	var id = this.id.split('-')[1];
 	         	currMonth = id; // will be values 0-11
-	         	console.log(id);
 	         	var realMonthNum = +id + 1;
  				$("#showWeekdays-"+realMonthNum).css("visibility","visible");
  				$("#showWeekends-"+realMonthNum).css("visibility","visible");
@@ -1275,13 +963,9 @@ for(var i = 0; i<12; i++) {
 	         // if any differences and where. Then fill in the missing days into frequency array
 	         var numDaysThisMonth = getDaysInMonth(i,2016);
 	         for(var j = 0; j<numDaysThisMonth.length; j++) {
-	         	//var realDayArr = numDaysThisMonth[j].toString().split(" ");
 	         	var realDay = new Date(numDaysThisMonth[j]);
 	         	var freqDay = new Date(frequencyData[j].key);
-	         	//console.log(freqDay);
-	         	//console.log("freqd: " + frequencyData[i][j]);
 	         	if (realDay.getTime() != freqDay.getTime()) {
-	         		console.log(realDay);
 	         		var m = parseInt(realDay.getMonth() + 1);
 					var d = parseInt(realDay.getDate());
 					var y = (realDay.getFullYear()).toString().substring(2,4);
@@ -1306,27 +990,18 @@ for(var i = 0; i<12; i++) {
 	         .attr("height",0)
 	         .attr("width",function(d){return 2})
 	         .attr("id",function(d) { 
-	         	//var fullDate = d.toString().split(" ",4);
-	         	//var dateString = fullDate.join("-");
-	         	//return dateString;
 	         	return d.key;
 	         })
 	         .attr("class","dateFreqBar")
 	         .on('mouseover', function(d) {
-	         	//var fullDate = d.toString().split(" ",4);
-	         	//var dateString = fullDate[0] + ", " + fullDate[1] + " " + fullDate[2] + " " + fullDate[3];
 	         	var tempDate = new Date(d.key);
 	         	var dateArray = tempDate.toString().split(" ");
 	         	var dateString = dateArray[0] + ", " + dateArray[1] + " " + parseInt(dateArray[2]) + " " + dateArray[3];
 	         	$(".titleToShow").text(dateString);
-
-	         	/*var numComplaints = d.value;
-	         	$(".titleInfo").text(numComplaints + " complaints");*/
 	         })
 	         .on('click',function(d){
 
 	         	 var tempDate = new Date(d.key); // eg. Tue Apr 19 2016 00:00:00 GMT-0400 (EDT)
-	         	 //console.log("tempdate is " + tempDate);
 				    var dateString = tempDate.toString();
 				    var dateString1 = dateString.split(" ");
 				    currDayName = dateString1[0];
@@ -1355,16 +1030,13 @@ for(var i = 0; i<12; i++) {
 	         .on('mouseover',function(d) {
 	         	var id = this.id.split('-')[1];
 	         	currMonth = id; // will be values 0-11
-	         	console.log(id);
 	         	var realMonthNum = +id + 1;
-	         	console.log("realMonthNum mouseover: " + realMonthNum);
 	         	$("#showWeekdays-"+realMonthNum).css("visibility","visible");
 	         	$("#showWeekends-"+realMonthNum).css("visibility","visible");
 	         });
 	         monthGroup2.on('mouseout',function(d){
 	         	var id = this.id.split('-')[1];
 	         	var realMonthNum = +id + 1;
-	         	console.log("realMonthNum mouseout: " + realMonthNum);
 	         	$("#showWeekdays-"+realMonthNum).css("visibility","hidden");
 	         	$("#showWeekends-"+realMonthNum).css("visibility","hidden");
 	         });
@@ -1379,9 +1051,7 @@ for(var i = 0; i<12; i++) {
 			.attr("height",50)
 			.attr("fill","#333")
 			.attr("class","buttonWk")
-			//.attr("id",month)
 			.on('click',function(d) {
-				console.log("clicked weekdays svg button, currMonth is " + currMonth);
 				var n = parseInt(currMonth) + 1;
 				for(var i = 0;i<mNames.length; i++) {
 					var mNum = getMonthFromString(mNames[i]);
@@ -1400,7 +1070,6 @@ for(var i = 0; i<12; i++) {
 			.attr("fill","#333")
 			.attr("class","buttonWk")
 			.on('click',function(d) {
-				console.log("clicked weekdends svg button, currMonth is " + currMonth);
 				for(var i = 0;i<mNames.length; i++) {
 					var mNum = getMonthFromString(mNames[i]);
 					if (mNum == n) {
@@ -1420,7 +1089,6 @@ for(var i = 0; i<12; i++) {
 				.style("stroke","#FFF")
 				.attr("class","buttonColor")
 				.on('click',function(d) {
-				console.log("clicked weekdays svg button, currMonth is " + currMonth);
 				var n = parseInt(currMonth) + 1;
 				for(var i = 0;i<mNames.length; i++) {
 					var mNum = getMonthFromString(mNames[i]);
@@ -1441,7 +1109,6 @@ for(var i = 0; i<12; i++) {
 				.style("stroke","#FFF")
 				.attr("class","buttonColor")
 				.on('click',function(d) {
-				console.log("clicked weekdends svg button, currMonth is " + currMonth);
 				for(var i = 0;i<mNames.length; i++) {
 					var mNum = getMonthFromString(mNames[i]);
 					if (mNum == n) {
@@ -1462,31 +1129,6 @@ for(var i = 0; i<12; i++) {
 
 	}
 
-	//flatten daysInYear array and reformat to match data's date formatting
-	//allDates is now every single day of 2016, 366 entries due to leap year
-	/*var allDates = [];
-	for(var i = 0; i < daysInYear.length; i++)
-	{
-		for(var j = 0; j < daysInYear[i].length; j++) {
-			var dateArray = daysInYear[i][j].toString().split(" ");
-			var m = getMonthFromString(dateArray[1]);
-			var d = parseInt(dateArray[2]);
-			var y = dateArray[3].toString().substring(2,4);
-			var reformattedDate = m + "/" + d + "/" + y;
-		    allDates = allDates.concat(reformattedDate);
-		}
-	}*/
-	//console.log(allDates.length);
-	//console.log("alldates: " + allDates);
-
-
-	
-
-
-	/*console.log(JSON.stringify(dateCount));
-	console.log(frequencyArray);
-	console.log(frequencyArray.length);*/
-
 }
 
 
@@ -1494,41 +1136,18 @@ function getDaysInMonth(month, year) {
 	 // Since no month has fewer than 28 days
 	 var date = new Date(year, month, 1);
 	 var days = [];
-	 //console.log('month', month, 'date.getMonth()', date.getMonth())
 	 while (date.getMonth() === month) {
 	    days.push(new Date(date));
 	    date.setDate(date.getDate() + 1);
 	 }
 	 return days;
 }
-        
-    //console.log("days in getDaysInMonth(4,2012) is " + getDaysInMonth(4, 2012))
-    // returns month of May
 
 setup(function() {
 	drawScale();
 	drawBase();
 	$("#centerDate").append("<span>date</span>")
-	//plotData(currDate,data);
 	drawCenter("","",false);
-	//drawBarCal();
-
-	//drawLine(88,40.25,"black");
-
-	//drawLine(88,331.2,"black"); // loudest decibel, 12am
-
-	// drawLine(decibel [length of line], time [rotate deg], color)
-	//drawLine(200,13.8,"black"); // second loudest decibel, 1am
-	//drawLine(88,27.6,"black"); // loudest decibel, 2am
-
-/*	drawLine(88,20,"red");
-	drawLine(200,30,"red");
-	drawLine(320,40,"red");
-	drawLine(430,80,"red");
-	drawLine(430,90,"red");
-	drawLine(430,180,"red");
-	drawLine(430,270,"red");*/
-
 });
 
 // mon = abbreviated month, eg. Apr
@@ -1545,30 +1164,22 @@ function getMonthFromString(mon){
 $(function() {
 	$( "#datepicker" ).datepicker({
 		onSelect: function(date) {
-		    //alert(date);
 		    //do your processing here
 		    alert(date);
 		    var tempDate = new Date(date);
 		    currDayName = tempDate.toString().substring(0,3);
 		    var dateString = date.split(" ");
-		    console.log(dateString);
 		    var month = dateString[1].substring(0,3);
 		    var day = dateString[0];
 		    currMonthName = month;
 		    currMonth = getMonthFromString(month);
 			currDay = day;
 
-			console.log("currmonth" + currMonth);
-			console.log("currYear" + currYear);
-			//currYear = "20" + dateString[2];
 			currYear = dateString[2];
-		    //$("#centerDateMonth").text(month);
-		   	//$("#centerDateDay").text(day);
 		   	drawCenter(month, day, false);
 		   	banging = horn = carMusic = engine = party = talking = tv = 0;
 		   	$('.num').html(0);
 		   	plotSingleData(currMonth,currDay,currYear,currDayName);
-		   	//console.log(currMonth + "/" + currDay + "/" + currYear);
 		},
 		changeMonth: true,
 		monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
@@ -1581,9 +1192,6 @@ $(function() {
       		currMonthName = $.datepicker.formatDate('M', new Date(year,month,0));
       		var tempYear = year.toString().slice(-2);
       		currYear = tempYear;
-      		console.log("M " + $.datepicker.formatDate('M', new Date(year,month,0)));
-      		console.log("monthhh " + currMonth);
-      		console.log("yearrrr " + tempYear);
       	}
 	});
 	$( "#datepicker" ).datepicker( "option", "dateFormat", "d M, y");
@@ -1593,10 +1201,6 @@ $(function() {
 $(document).ready(function () {
 	$('.ui-state-hover').removeClass('ui-state-hover');
 	$('.ui-state-active').removeClass('ui-state-active');
-	
-	//$('.ui-state-active').click(
-			//function(){ plotData(4,16,2017); }
-	//	);
 
     // Change the first select to the document if you want to 
     // detect addition of elements accross the whole page!
@@ -1619,27 +1223,13 @@ $(document).ready(function () {
     });
 
     $("#showWeekends").click(function() {
-		//alert("hey");
-		console.log("clicked showWeekends, currMonth is " + currMonth)
 		plotWeekendsInMonth(currMonth,currYear,currDayName);
 	});
 	$("#showWeekdays").click(function() {
-		//alert("hey");
-		console.log("clicked showWeekdays, currMonth is " + currMonth)
 		plotWeekdaysInMonth(currMonth,currYear,currDayName);
 	});
 
 
-	 /* $(".dateBar").hover(function() {
-	    $(".dateFreqBar").css("background-color", "yellow");
-	  }, function() {
-	    // on mouseout, reset the background colour
-	    $(".dateFreqBar").css("background-color", "");
-	  });*/
-
-	  /*$(".days").mouseover(function() {
-	  	console.log("test yo");
-	  });*/
 	  $("#buttons-jan").hover(function() {
 	  	$("#showWeekdays-1").css("visibility","visible");
 	 	$("#showWeekends-1").css("visibility","visible");
@@ -1832,8 +1422,6 @@ $('[rel=tooltip]').tooltip({
 var plotWeekendsInMonth = function(month,year) {
 	banging = horn = carMusic = engine = party = talking = tv = 0;
 
-	console.log("in plotWeekendsInMonth, month is " + month);
-
 	$('.num').html(0);
 
 	for(var i = 0;i<mNames.length; i++) {
@@ -1850,9 +1438,6 @@ var plotWeekendsInMonth = function(month,year) {
 	$("td:not(.ui-datepicker-unselectable):not(.ui-datepicker-week-end)").removeClass("dayHighlight");
 	$("td.ui-datepicker-week-end:not(.ui-datepicker-unselectable)").addClass("dayHighlight");
 
-	console.log("hehe " + month);
-	console.log("hehe1 " + (month-1).toString());
-
 	var d = new Date("20" + year,(month-1).toString());
 	var getTot = daysInMonth(d.getMonth()+1,d.getFullYear()); //Get total days in a month
 	var sat = new Array();   //Declaring array for inserting Saturdays
@@ -1868,24 +1453,17 @@ var plotWeekendsInMonth = function(month,year) {
 	    }
 
 	}
-	console.log(sat);
-	console.log(sun);
 
 	for(var i = 0; i<sun.length;i++) {
 		currDay = sun[i];
 		currDayName = "Sun";
 		plotData(month,sun[i],year,"Sun",true);
-		console.log("in loop sund " + month + "/" + parseInt(sun[i]) + "/" + year);
 	}
 	for(var j = 0; j<sat.length;j++) {
 		currDay = sat[j];
 		currDayName = "Sat";
 		plotData(month,sat[j],year,"Sat",true);
-		console.log("in loop sat " + month + "/" + parseInt(sat[j]) + "/" + year);
 	}
-
-	console.log("currMonthName " + currMonthName);
-	console.log("currMonth " + currMonth);
 
 	drawCenter(currMonthName,"Wknds",true);
 
@@ -1894,8 +1472,6 @@ var plotWeekendsInMonth = function(month,year) {
 // month = the real numbered month, eg. 4 is Apr
 var plotWeekdaysInMonth = function(month,year) {
 	banging = horn = carMusic = engine = party = talking = tv = 0;
-
-	console.log("in plotWeekdaysInMonth, month is " + month);
 
 	$('.num').html(0);
 
@@ -1912,9 +1488,6 @@ var plotWeekdaysInMonth = function(month,year) {
 
 	$("td.ui-datepicker-week-end:not(.ui-datepicker-unselectable)").removeClass("dayHighlight");
 	$("td:not(.ui-datepicker-unselectable):not(.ui-datepicker-week-end)").addClass("dayHighlight");
-
-	console.log("hehe " + month);
-	console.log("hehe1 " + (month-1).toString());
 
 	var d = new Date("20" + year,(month-1).toString());
 	var getTot = daysInMonth(d.getMonth()+1,d.getFullYear()); //Get total days in a month
@@ -1943,51 +1516,39 @@ var plotWeekdaysInMonth = function(month,year) {
 	    }
 
 	}
-	console.log(mon);
-	console.log(tue);
-	console.log(wed);
-	console.log(thu);
-	console.log(fri);
 
 	for(var i = 0; i<mon.length;i++) {
 		currDay = mon[i];
 		currDayName = "Mon";
 		plotData(month,mon[i],year,"Mon",true);
-		console.log("in loop mon " + month + "/" + parseInt(mon[i]) + "/" + year);
 	}
 	for(var j = 0; j<tue.length;j++) {
 		currDay = tue[j];
 		currDayName = "Tue";
 		plotData(month,tue[j],year,"Tue",true);
-		console.log("in loop tue " + month + "/" + parseInt(tue[j]) + "/" + year);
 	}
 	for(var j = 0; j<wed.length;j++) {
 		currDay = wed[j];
 		currDayName = "Wed";
 		plotData(month,wed[j],year,"Wed",true);
-		console.log("in loop wed " + month + "/" + parseInt(wed[j]) + "/" + year);
 	}
 	for(var j = 0; j<thu.length;j++) {
 		currDay = thu[j];
 		currDayName = "Thu";
 		plotData(month,thu[j],year,"Thu",true);
-		console.log("in loop thu " + month + "/" + parseInt(thu[j]) + "/" + year);
 	}
 	for(var j = 0; j<fri.length;j++) {
 		currDay = fri[j];
 		currDayName = "Fri";
 		plotData(month,fri[j],year,"Fri",true);
-		console.log("in loop fri " + month + "/" + parseInt(fri[j]) + "/" + year);
 	}
 
-	console.log("currMonthName " + currMonthName);
 	drawCenter(currMonthName,"Wkdys",true);
 
 }
 
 
 function daysInMonth(month,year) {
-	console.log("in daysInMonth " + new Date(year, month, 0).getDate());
     return new Date(year, month, 0).getDate();
 }
 
@@ -2012,7 +1573,4 @@ $.fn.increment= function(options) {
  }, speed);
 
 };
-
-
-//$("#badge").increment({coef: 1, speed:100, limit:banging});
 
